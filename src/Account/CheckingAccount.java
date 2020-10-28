@@ -1,4 +1,4 @@
-package com.company;
+package Account;
 
 public class CheckingAccount extends BankAccount {
     private int dailyLimit;
