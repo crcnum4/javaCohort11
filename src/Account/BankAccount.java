@@ -33,4 +33,6 @@ public class BankAccount {
         return "type: " + type + "\tAccountNum: " + accountNum + "\tOwner: " + owner + "\tbalance: " + balanceF;
     }
 
+    public int getBalance() { return balance; }
+
 }
