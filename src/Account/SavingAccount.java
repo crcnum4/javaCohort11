@@ -1,6 +1,6 @@
 package Account;
 
-public class SavingAccount extends BankAccount {
+public class SavingAccount extends BankAccount implements Account{
     private int interest;
 
     public SavingAccount(int balance, String owner, String accountNum, int interest) {
