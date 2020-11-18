@@ -19,9 +19,15 @@ public class Hand {
         }
     }
 
-    public void roll(Random rand, int choice) {}
+    public void roll(Random rand, int choice) {
+        dice.get(choice).roll(rand);
+    }
 
-    // public void roll(random rand, choices) {}
+     public void roll(Random rand, List<Integer> choices) {
+        for (int choice : choices) {
+            roll(rand, choice);
+        }
+     }
 
     @Override
     public String toString() {
