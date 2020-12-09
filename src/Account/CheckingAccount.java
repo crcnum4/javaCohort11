@@ -20,8 +20,6 @@ public class CheckingAccount extends BankAccount implements Account {
             return;
         }
         super.withdraw(amt);
-
-
     }
 
 }
