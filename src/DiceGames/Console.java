@@ -1,15 +1,30 @@
 package DiceGames;
 
+import java.util.Scanner;
+
 public class Console {
+    Scanner scanner = new Scanner(System.in);
     public int getInt(int min, int max, String query) {
-        return 0;
+        int value = 0 ;
+        do {
+            System.out.println(query);
+            value = scanner.nextInt();
+        } while(value < min || value > max);
+        return value;
+    }
+
+    public boolean getYN(String yes, String no, String query) {
+        String input = "";
+        do {
+            System.out.println(query);
+            input = scanner.nextLine();
+        } while (!input.equals(yes) && !input.equals(no));
+        return input.equals(yes);
+    }
+
+    public String getString(String query) {
+        System.out.println(query);
+        return scanner.nextLine();
     }
 }
 
-//getInt(1, 4, "i want a number")
-
-//output
-// i want number
-// 0 reask
-// 5 reask
-// 3 return 3
