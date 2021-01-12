@@ -23,6 +23,10 @@ public class Player {
         cup.peek();
     }
 
+    public int countValue(int value) { return cup.countValue(value);}
+
+    public void removeDie() { cup.removeDie();}
+
     public String getName() {return name;}
 
     // make claim
