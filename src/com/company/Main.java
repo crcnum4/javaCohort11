@@ -4,30 +4,31 @@ import Account.*;
 import Bank.Client;
 import BankTools.DebitCard;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
-//        BankAccount myAcct = new BankAccount(100000, "Phil", "1234", "Account");
-        CheckingAccount myChecking = new CheckingAccount(20000, "Cliff", "9876", 10000);
-        SavingAccount mySavings = new SavingAccount(100000, "Cliff", "3333", 5);
-        InvestmentAccount myInvest = new InvestmentAccount(100000, "Will", "3289", 3);
-        CDInvestment myCD = new CDInvestment(300000, "Cliff", "78457", 36);
 
-        Client cliff = new Client("Cliff", "Choiniere", "123456789", "Chestnut St");
+        Client cliff = new Client("Cliff", "Choiniere", "555", "1 chestnut");
 
-        cliff.addAccount(mySavings);
-        cliff.addAccount(myCD);
-        cliff.addAccount(myChecking);
-        cliff.addAccount(myInvest);
+        cliff.addAccount(new CheckingAccount(1000, "Cliff", "1234", 500));
+        cliff.addAccount(new SavingAccount(3000, "Pao", "5543", 5));
+        cliff.addAccount(new InvestmentAccount(10000, "Cliff", "9987", 8));
 
-        cliff.addDebitCard("9876");
+        System.out.println(cliff.displayAccounts());
+        System.out.println();
+        cliff.withdrawAccount("5543", 745);
+        cliff.withdrawAccount("1234", 387);
+        cliff.withdrawAccount("9987", 100);
         System.out.println(cliff.displayAccounts());
 
-//        DebitCard myCard = new DebitCard("12345678", "1234", "555", "Cliff", myChecking);
-//        myCard.addAccount(mySavings);
-//        myCard.addAccount(myInvest);
-//        myCard.addAccount(myCD);
-//        myCard.displayAccounts();
-//        myCard.details();
+        cliff.addDebitCard("1234");
+
+        System.out.println(cliff.displayAccounts());
+
     }
 }

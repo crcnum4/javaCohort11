@@ -26,6 +26,11 @@ public class BankAccount implements Account {
     }
 
     @Override
+    public String getAccountNum() {
+        return accountNum;
+    }
+
+    @Override
     public String toString() {
         int dollar = balance / 100;
         int cents = balance % 100;
