@@ -1,6 +1,7 @@
 package com.company;
 
 import Account.*;
+import Bank.Bank;
 import Bank.Client;
 import BankTools.DebitCard;
 
@@ -15,20 +16,14 @@ public class Main {
 
         Client cliff = new Client("Cliff", "Choiniere", "555", "1 chestnut");
 
-        cliff.addAccount(new CheckingAccount(1000, "Cliff", "1234", 500));
-        cliff.addAccount(new SavingAccount(3000, "Pao", "5543", 5));
-        cliff.addAccount(new InvestmentAccount(10000, "Cliff", "9987", 8));
+        Bank ourBank = new Bank("Coders Credit Union", "Dev Island");
 
-        System.out.println(cliff.displayAccounts());
-        System.out.println();
-        cliff.withdrawAccount("5543", 745);
-        cliff.withdrawAccount("1234", 387);
-        cliff.withdrawAccount("9987", 100);
-        System.out.println(cliff.displayAccounts());
+        ourBank.addClient("Cliff", "Choiniere", "555", "1 chestnut");
+        ourBank.addClient("Will", "Brown", "1337");
 
-        cliff.addDebitCard("1234");
+        System.out.println(ourBank.displayClients());
 
-        System.out.println(cliff.displayAccounts());
+        // instantiate a Ui and then call create Account to create a checking account.
 
     }
 }

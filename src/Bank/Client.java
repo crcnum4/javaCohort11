@@ -63,5 +63,7 @@ public class Client {
         return accounts.get(accountNum).toString();
     }
 
-
+    public String getName() {
+        return name;
+    }
 }
