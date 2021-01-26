@@ -13,4 +13,9 @@ public class SavingAccount extends BankAccount implements Account{
         balance += (int) (balance * (interest / 100.0));
 //        balance += (balance * interest) / 100;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\tInterest: " + interest + "%";
+    }
 }
