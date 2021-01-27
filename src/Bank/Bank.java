@@ -3,6 +3,8 @@ package Bank;
 import Account.Account;
 import Account.CheckingAccount;
 import Account.SavingAccount;
+import BankTools.DebitCard;
+import BankTools.Generator;
 import BankTools.Ui;
 
 import java.util.ArrayList;
@@ -14,8 +16,11 @@ public class Bank {
     private int onHandCash;
     private String city;
     private HashMap<Integer, Client> clients = new HashMap<Integer, Client>();
-    private List<Account> accounts = new ArrayList<Account>();
+    private HashMap<String, Account> accounts = new HashMap<>();
+//    private List<Account> accounts = new ArrayList<Account>();
+    private int accountCount = 0;
     private int clientCount = 0;
+    final private String NUMBERS = "0123456789";
     // list of accounts?
 
     //create the bank.
@@ -53,7 +58,7 @@ public class Bank {
     public void addAccount(int balance, int ownerId, String accountType, Ui ui) {
         Client client = clients.get(ownerId);
         Account newAccount = createAccount(balance, client.getName(), accountType, ui);
-        accounts.add(newAccount);
+        accounts.put(newAccount.getAccountNum(), newAccount);
         client.addAccount(newAccount);
     }
 
@@ -64,7 +69,7 @@ public class Bank {
                 return new CheckingAccount(
                         balance,
                         owner,
-                        Integer.toString(accounts.size() + 1),
+                        Integer.toString(++accountCount),
                         ui.getNumber(
                                 "What is this clients Daily limit? " + 20 + " - " + balance,
                                 20,
@@ -75,7 +80,7 @@ public class Bank {
                 return new SavingAccount(
                         balance,
                         owner,
-                        Integer.toString(accounts.size() + 1),
+                        Integer.toString(++accountCount),
                         ui.getNumber("Savings Interest rate 3% to 10%? ", 3, 10)
                 );
             default:
@@ -84,12 +89,23 @@ public class Bank {
         }
     };
 
-    public void addDebitCard() {
-        return;
+    public void addDebitCard(int ownerId, String accountId) {
+        Client client = clients.get(ownerId);
+        Account account = accounts.get(accountId);
+        if (!(account instanceof CheckingAccount)) {
+            System.out.println("Error: Primary account must be a checking account.");
+            return;
+        }
+        DebitCard newCard = createDebitCard(client.getName(), (CheckingAccount) account);
+        client.addDebitCard(newCard);
     };
 
-    public void createDebitCard() {
-        return;
+    public DebitCard createDebitCard(String owner, CheckingAccount account) {
+        String cardNum = Generator.randomCode(NUMBERS, 16);
+        String pin = Generator.randomCode(NUMBERS, 4);
+        String securityCode = Generator.randomCode(NUMBERS, 3);
+
+        return new DebitCard(cardNum, pin, securityCode, owner, account );
     }
 
 }
