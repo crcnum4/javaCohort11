@@ -1,6 +1,8 @@
 package BankTools;
 
+import Account.BankAccount;
 import Account.CheckingAccount;
+import Account.BankAccount;
 
 import java.util.ArrayList;
 import java.util.List;
